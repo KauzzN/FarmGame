@@ -1,0 +1,16 @@
+local RunService = game:GetService("RunService")
+
+local uiContainer = script.Parent:WaitForChild("GameGui")
+local coinDisplay = uiContainer:WaitForChild("CoinsLabel")
+
+local previousCoins = -1
+
+local function refreshInterface()
+    local current = _G.gameData.coins
+    if current ~= previousCoins then
+        previousCoins = current
+        coinDisplay.Text = string.format("Moedas: %d", current)
+    end
+end
+
+RunService.Heartbeat:Connect(refreshInterface)
